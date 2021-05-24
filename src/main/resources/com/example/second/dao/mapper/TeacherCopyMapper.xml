@@ -1,0 +1,150 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.second.dao.TeacherCopyDao">
+    <insert id="addTeacher" parameterType="com.example.second.entity.Teacher">
+        insert into teacher_copy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="people= null">
+                people,
+            </if>
+            <if test="year != null">
+                year,
+            </if>
+            <if test="subject != null">
+                subject,
+            </if>
+            <if test="edu != null">
+                edu,
+            </if>
+            <if test="college != null">
+                college,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="weChat != null">
+                weChat,
+            </if>
+            <if test="mail= null">
+                mail,
+            </if>
+            <if test="birthday= null">
+                birthday,
+            </if>
+            <if test="grade= null">
+                grade,
+            </if>
+            <if test="classes= null">
+                classes,
+            </if>
+            <if test="classT= null">
+                classT,
+            </if>
+            <if test="marriage= null">
+                marriage,
+            </if>
+            <if test="bloodType= null">
+                mail,
+            </if>
+            <if test="party= null">
+                party,
+            </if>
+            <if test="remark= null">
+                remark,
+            </if>
+            <if test="height= null">
+                height,
+            </if>
+            <if test="weight= null">
+                weight,
+            </if>
+            <if test="hobby= null">
+                hobby,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="people != null">
+                #{people,jdbcType=VARCHAR},
+            </if>
+            <if test="year != null">
+                #{year,type=VARCHAR},
+            </if>
+            <if test="subject != null">
+                #{subject,jdbcType=VARCHAR},
+            </if>
+            <if test="edu != null">
+                #{edu,jdbcType=VARCHAR},
+            </if>
+            <if test="college != null">
+                #{college,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="weChat != null">
+                #{weChat,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="classes != null">
+                #{classes,jdbcType=VARCHAR},
+            </if>
+            <if test="classT != null">
+                #{classT,jdbcType=VARCHAR},
+            </if>
+            <if test="marriage != null">
+                #{marriage,jdbcType=VARCHAR},
+            </if>
+            <if test="bloodType != null">
+                #{bloodType,jdbcType=VARCHAR},
+            </if>
+            <if test="party != null">
+                #{party,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null">
+                #{height,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=INTEGER},
+            </if>
+            <if test="hobby != null">
+                #{hobby,jdbcType=VARCHAR},
+            </if>
+            </trim>
+    </insert>
+</mapper>    

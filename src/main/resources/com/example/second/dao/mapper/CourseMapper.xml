@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.CourseDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.Course">
+        <id column="cid" property="cid" jdbcType="BIGINT"/>
+        <result column="cid" property="cid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="teacher" property="teacher" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="credit" property="credit" jdbcType="VARCHAR"/>
+        <result column="classroom" property="classroom" jdbcType="VARCHAR"/>
+
+
+    </resultMap>
+    <sql id="Base_Column_List">
+      cid,name,teacher,introduce,credit,classroom
+    </sql>
+
+    <select id="findAllCourses" resultType="com.example.second.entity.Course">
+        select * from course
+    </select>
+
+    <select id="findCourseByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from course where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteCoursesByIds">
+        delete from course where cid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountCourses" resultType="java.lang.Integer">
+        select count(cid) as count from course
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        where cid = #{cid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteCourseById" parameterType="java.lang.Long">
+        delete from course
+        where cid = #{cid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.Course">
+        insert into course (cid, name,teacher,introduce,credit,classroom )
+        values (#{cid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{teacher,jdbcType=VARCHAR},
+        #{introduce,jdbcType=VARCHAR},#{credit,jdbcType=VARCHAR},#{classroom,jdbcType=VARCHAR},)
+    </insert>
+    <insert id="addCourse" parameterType="com.example.second.entity.Course">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null">
+                cid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="teacher != null">
+                teacher,
+            </if>
+            <if test="introduce != null">
+                introduce,
+            </if>
+            <if test="credit != null">
+                credit,
+            </if>
+            <if test="classroom != null">
+                classroom,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null">
+                #{cid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher != null">
+                #{teacher,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="credit != null">
+                #{credit,jdbcType=VARCHAR},
+            </if>
+            <if test="classroom != null">
+                #{classroom,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateCourse" parameterType="com.example.second.entity.Course">
+        update course
+        <set>
+            <if test="cid != null">
+                cid = #{cid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher != null">
+                teacher = #{teacher,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="credit != null">
+                credit = #{credit,jdbcType=VARCHAR},
+            </if>
+            <if test="classroom != null">
+                classroom = #{classroom,jdbcType=VARCHAR},
+            </if>
+
+        </set>
+        where cid = #{cid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.second.entity.Course">
+        update course
+
+        set name = #{name,jdbcType=VARCHAR},
+            teacher = #{teacher,jdbcType=VARCHAR},
+            introduce = #{introduce,jdbcType=VARCHAR},
+            credit = #{credit,jdbcType=VARCHAR},
+            classroom = #{classroom,jdbcType=VARCHAR},
+
+            where cid = #{cid,jdbcType=BIGINT},
+
+    </update>
+</mapper>
