@@ -3,7 +3,7 @@ package com.example.second.entity;
 
 public class Course {
 
-        private Long cid;
+        private Long uid;
 
         private String name;
 
@@ -32,11 +32,11 @@ public class Course {
         }
 
         public Long getUid() {
-                return this.cid;
+                return this.uid;
         }
 
-        public void setUid(Long cid) {
-                this.cid = cid;
+        public void setUid(Long uid) {
+                this.uid = uid;
         }
 
         public String getName() {

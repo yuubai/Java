@@ -40,8 +40,8 @@ public class CourseServiceBean implements CourseService {
         this.courseCountDao.addCount(count);
     }
 
-    public void deleteCourseById(Long cid) {
-        this.courseDao.deleteCourseById(cid);
+    public void deleteCourseById(Long uid) {
+        this.courseDao.deleteCourseById(uid);
         Integer count = this.courseDao.getCountCourses();
         this.courseCountDao.addCount(count);
     }

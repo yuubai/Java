@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.second.dao.InformCopyDao">
+    <insert id="addInform" parameterType="com.example.second.entity.Inform">
+        insert into inform_copy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+               uid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="time != null">
+                time,
+            </if>
+            <if test="info != null">
+                info,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null">
+                #{info,jdbcType=VARCHAR},
+            </if>
+            </trim>
+    </insert>
+</mapper>    

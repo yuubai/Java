@@ -14,13 +14,13 @@ public interface CourseDao {
 
     List<Course> findAllCourses();
 
-    int deleteCourseById(Long cid);
+    int deleteCourseById(Long uid);
 
     int insert(Course course);
 
     int addCourse(Course course);
 
-    Course selectByPrimaryKey(Long cid);
+    Course selectByPrimaryKey(Long uid);
 
     int updateCourse(Course course);
 

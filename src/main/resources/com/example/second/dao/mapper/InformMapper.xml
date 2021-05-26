@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.InformDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.Inform">
+        <id column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="time" property="time" jdbcType="VARCHAR"/>
+        <result column="info" property="info" jdbcType="VARCHAR"/>
+
+
+
+    </resultMap>
+    <sql id="Base_Column_List">
+      uid,name,time,info
+    </sql>
+
+    <select id="findAllInforms" resultType="com.example.second.entity.Inform">
+        select * from inform
+
+    </select>
+
+    <select id="findInformByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from inform
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteInformsByIds">
+        delete from inform
+        where uid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountInforms" resultType="java.lang.Integer">
+        select count(uid) as count from inform
+
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from inform
+
+        where uid = #{uid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteInformById" parameterType="java.lang.Long">
+        delete from inform
+
+        where uid = #{uid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.Inform">
+        insert into inform
+            (uid, name,time,info)
+        values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR},
+        #{info,jdbcType=VARCHAR},)
+    </insert>
+    <insert id="addInform" parameterType="com.example.second.entity.Inform">
+        insert into inform
+
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="time!= null">
+                time,
+            </if>
+            <if test="info != null">
+                info,
+            </if>
+
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="time!= null">
+                #{time,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null">
+                #{info,jdbcType=VARCHAR},
+            </if>        </trim>
+    </insert>
+    <update id="updateInform" parameterType="com.example.second.entity.Inform">
+        update inform
+
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="time!= null">
+                time= #{time,jdbcType=VARCHAR},
+            </if>
+
+        </set>
+        where uid = #{uid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.second.entity.Inform">
+        update inform
+
+        set name = #{name,jdbcType=VARCHAR},
+            time= #{time,jdbcType=VARCHAR},
+            info = #{info,jdbcType=VARCHAR},
+
+            where uid = #{uid,jdbcType=BIGINT},
+
+    </update>
+</mapper>

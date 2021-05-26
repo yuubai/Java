@@ -5,8 +5,8 @@
     <insert id="addCourse" parameterType="com.example.second.entity.Course">
         insert into course_copy
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="cid != null">
-               cid,
+            <if test="uid != null">
+               uid,
             </if>
             <if test="name != null">
                 name,
@@ -26,8 +26,8 @@
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="cid != null">
-                #{cid,jdbcType=BIGINT},
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
             </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
